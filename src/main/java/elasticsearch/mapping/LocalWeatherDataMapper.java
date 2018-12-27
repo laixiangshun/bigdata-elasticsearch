@@ -8,16 +8,14 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.mapper.*;
 
 /**
- * @Description
- * @Author hasee
- * @Date 2018/12/26
+ * 适用于elasticsearch6.x
  **/
 public class LocalWeatherDataMapper extends BaseElasticSearchMapping {
 
     private static final String indexType = "document";
 
     public LocalWeatherDataMapper() {
-        this(indexType, Version.V_6_2_4);
+        this(indexType, Version.V_6_5_4);
     }
 
     public LocalWeatherDataMapper(String indexType, Version version) {
@@ -36,9 +34,8 @@ public class LocalWeatherDataMapper extends BaseElasticSearchMapping {
                         .add(new TextFieldMapper.Builder("name"))
                         .add(new TextFieldMapper.Builder("state"))
                         .add(new TextFieldMapper.Builder("location"))
-                        .add(new ObjectMapper.Builder("coordinates")
-                                .add(new NumberFieldMapper.Builder("lat", NumberFieldMapper.NumberType.DOUBLE))
-                                .add(new NumberFieldMapper.Builder("lon", NumberFieldMapper.NumberType.DOUBLE))));
+                        .add(new GeoPointFieldMapper.Builder("coordinates"))
+                        .nested(ObjectMapper.Nested.newNested(true, false)));
     }
 
     @Override

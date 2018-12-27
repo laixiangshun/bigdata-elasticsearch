@@ -23,9 +23,9 @@ public class LocalWeatherDataMapper extends CsvMapping<LocalWeatherData> {
         mapProperty(0, String.class, LocalWeatherData::setWban);
         mapProperty(1, LocalDate.class, LocalWeatherData::setDate, new LocalDateConverter(DateTimeFormatter.ofPattern("yyyyMMdd")));
         mapProperty(2, LocalTime.class, LocalWeatherData::setTime, new LocalTimeConverter(DateTimeFormatter.ofPattern("HHmm")));
-        mapProperty(3, String.class, LocalWeatherData::setSkyCondition);
-        mapProperty(4, Float.class, LocalWeatherData::setDryBulbCelsius, new IgnoreMissingValuesConverter("M"));
-        mapProperty(5, Float.class, LocalWeatherData::setWindSpeed, new IgnoreMissingValuesConverter("M"));
-        mapProperty(6, Float.class, LocalWeatherData::setStationPressure, new IgnoreMissingValuesConverter("M"));
+        mapProperty(4, String.class, LocalWeatherData::setSkyCondition);
+        mapProperty(12, Float.class, LocalWeatherData::setDryBulbCelsius, new IgnoreMissingValuesConverter("M"));
+        mapProperty(24, Float.class, LocalWeatherData::setWindSpeed, new IgnoreMissingValuesConverter("M"));
+        mapProperty(30, Float.class, LocalWeatherData::setStationPressure, new IgnoreMissingValuesConverter("M"));
     }
 }
